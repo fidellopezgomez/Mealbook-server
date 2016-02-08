@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=title %> - Ajustes</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <h1>Ajustes</h1>
+    <p>Consultar y modificar parámetros de la web</p>
+    <form method="get" action="/settings/resume">
+      <p>Cambiar el nombre actual, <%=user_name %>, por:</p>
+      <input type="text" name="new_name" placeholder="Escribe tu nuevo nombre"/>
+      <input type="hidden" name="old_name" value="<%=user_name %>"/>
+      <input type="hidden" name="title" value="<%=title %>"/>
+      <input type="submit" value="Aceptar"/>
+    </form>
+    <p><a href="/">Volver al inicio</a></p>
+  </body>
+</html>
