@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { user_name: 'Fidel', title: 'Mealbook' });
 });
 
+//TODO cambar a PUT
 router.get('/settings',settings.index);
 router.get('/settings/resume',settings.resume);
 
