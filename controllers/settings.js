@@ -9,8 +9,6 @@ exports.index = function(req, res) {
 exports.resume = function(req, res) {
   var new_name = req.query.new_name;
   var old_name = req.query.old_name;
-  console.log('nuevo nombre: '+new_name+'\n');
-  console.log('viejo nombre: '+old_name+'\n');
 
   var message;
   if(new_name === old_name) {
