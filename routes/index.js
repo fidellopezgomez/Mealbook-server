@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var settings = require('../controllers/settings');
-var patient = require('../controllers/patient');
+var settingsController = require('../controllers/settings_controller');
+var patientController = require('../controllers/patient_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,9 +10,10 @@ router.get('/', function(req, res, next) {
 });
 
 //TODO cambar a PUT
-router.get('/settings',settings.index);
-router.get('/settings/resume',settings.resume);
+router.get('/settings',settingsController.index);
+router.get('/settings/resume',settingsController.resume);
 
-router.get('/patients',patient.list);
+router.get('/patients',patientController.index);
+router.get('/patients/:patientId(\\d+)',patientController.show);
 
 module.exports = router;

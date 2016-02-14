@@ -1,5 +1,18 @@
 var path = require('path');
 
+var pg = require('pg');
+
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  if(err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  client
+    .query('SELECT table_schema,table_name FROM information_schema.tables;');
+    .on('row',function(row) {
+      console.lg(JSON.stringify(row));
+    })
+});
+
 // Postgres DATABASE_URL = postgres://user:password@host:port/DATABASE_URL
 // SQLite DATABASE_URL = sqlite://:@:/
 var URL = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
@@ -45,12 +58,11 @@ sequelize.sync().then(function() {
   //success(...) ejecuta el manejador una vez creada la tabla
   Patient.count().then(function(count){
     if(count === 0) { //la tabla se inicializa solo si está vacía
-      Patient.create(
-        { name: 'Pedro',email: 'pedro@email.com' }//,
-        //{ name: '',email: '' },
-        //{ name: '',email: '' },
-        //{ name: '',email: '' }
-      ).then(function(){console.log('Database initialized')})
+      Patient.create({ name: 'Pedro',email: 'pedro@email.com' });
+      Patient.create({ name: 'Marcos',email: 'marcos@email.com' });
+      Patient.create({ name: 'Sofía',email: 'sofia@email.com' });
+      Patient.create({ name: 'Lucia',email: 'lucia@email.com' })
+      .then(function(){console.log('Database initialized')})
     };
   });
 });
