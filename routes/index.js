@@ -13,6 +13,9 @@ router.get('/', function(req, res, next) {
 router.get('/settings',settingsController.index);
 router.get('/settings/resume',settingsController.resume);
 
+// Autoload de comandos con :patientId
+router.param('patientId',patientController.load);
+
 router.get('/patients',patientController.index);
 router.get('/patients/:patientId(\\d+)',patientController.show);
 

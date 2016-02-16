@@ -45,11 +45,13 @@ sequelize.sync().then(function() {
   //success(...) ejecuta el manejador una vez creada la tabla
   Patient.count().then(function(count){
     if(count === 0) { //la tabla se inicializa solo si está vacía
-      Patient.create({ name: 'Pedro',email: 'pedro@email.com' });
-      Patient.create({ name: 'Marcos',email: 'marcos@email.com' });
-      Patient.create({ name: 'Sofía',email: 'sofia@email.com' });
-      Patient.create({ name: 'Lucia',email: 'lucia@email.com' })
-      .then(function(){console.log('Database initialized')})
+      Patient.bulkCreate(
+        [ { name: 'Pedro' ,email: 'pedro@email.com' },
+          { name: 'Marcos',email: 'marcos@email.com' },
+          { name: 'Sofía' ,email: 'sofia@email.com' },
+          { name: 'Lucia' ,email: 'lucia@email.com' },
+          { name: 'Susana',email: 'susana@email.com' } ]
+      ).then(function(){console.log('Database initialized')})
     };
   });
 });
