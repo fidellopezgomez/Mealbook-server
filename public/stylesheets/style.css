@@ -10,3 +10,8 @@ a {
 footer {
   margin-top: 15px;
 }
+
+#errorMsgs li{
+  color: #f61;
+  font-size: smaler;
+}

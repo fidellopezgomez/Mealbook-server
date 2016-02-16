@@ -1,5 +1,13 @@
 <h2>Nuevo paciente:</h2>
 
+<% if(errors.length) { %>
+  <ul id="errorMsgs">
+    <% for(var i in errors) { %>
+      <li><%= errors[i].message %></li>
+    <% } %>
+  </ul>
+<% } %>
+
 <form method="post" action="/patients/create">
   <% include _form_new_patient.ejs %>
 </form>

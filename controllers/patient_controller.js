@@ -27,18 +27,34 @@ exports.show = function(req, res) {
 //GET /patients/new
 exports.new = function(req, res) {
   var patient = models.Patient.build(// crea objeto Paciente
-    {name:"Introduce el nombre",email:"Introduce el email"}
+    {name:"",email:""}
   );
-
-  res.render('patients/new',{ patient: patient });
+  var phName = "Introduce el nombre";
+  var phEmail = "Introduce el email";
+  res.render('patients/new',{ phName: phName, phEmail: phEmail, patient: patient, errors: []});
 };
 
 //POST /patients/create
 exports.create = function(req, res) {
   var patient = models.Patient.build( req.body.patient );
 
-  // guardar en la DB el nuevo paciente
-  patient.save({fields: ["name","email"]}).then(function(){
-    res.redirect('/patients');
-  }) // Redirección HTTP (URL relativo) a la lista de pacientes
+  patient
+    .validate()
+    .then(function(err) {
+      if(err) {
+        var e = err.errors
+        if(e.length) {
+          for(var i in e) {
+                console.log("error: "+e[i].message);
+          }
+        }
+        var phName = "Introduce el nombre";
+        var phEmail = "Introduce el email";
+        res.render('patients/new', { phName: phName, phEmail: phEmail, patient: patient, errors: err.errors});
+      } else {// guardar en la DB el nuevo paciente
+        patient
+          .save({fields: ["name","email"]})
+          .then(function(){ res.redirect('/patients'); }) // Redirección HTTP (URL relativo) a la lista de pacientes
+      }
+    });
 };
