@@ -61,7 +61,9 @@ exports.edit = function(req, res) {
 }
 
 //PUT /patients/:patientId
-exports.update = function(req,res) {
+exports.update = function(req, res) {
+  //var patient = req.patient;
+
   req.patient.name = req.body.patient.name;
   req.patient.email = req.body.patient.email;
 
@@ -69,7 +71,9 @@ exports.update = function(req,res) {
     .validate()
     .then(function(err){
       if(err) {
-        res.render('patients/edit', {phName: "", phEmail: "", patient: patient, btnLabel: "Modificar", errors: err.errors});
+        var placeholderName = "Introduce el nombre";
+        var placeholderEmail = "Introduce el email";
+        res.render('patients/edit', { phName: placeholderName, phEmail: placeholderEmail, patient: req.patient, btnLabel: "Modificar", errors: err.errors});
       }else {
         req.patient
           .save({fields: ["name","email"]})// guardar en la base de datos el paciente modificado
