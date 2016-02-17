@@ -1,4 +1,4 @@
-<h2>Nuevo paciente:</h2>
+<h2>Edita los datos del paciente</h2>
 
 <% if(errors.length) { %>
   <ul id="errorMsgs">
@@ -8,6 +8,6 @@
   </ul>
 <% } %>
 
-<form method="post" action="/patients/create">
+<form method="post" action="/patients/<%= patient.id %>?_method=put" >
   <% include _form_patient.ejs %>
 </form>

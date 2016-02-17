@@ -10,15 +10,17 @@ router.get('/', function(req, res, next) {
 });
 
 //TODO cambar a PUT
-router.get('/settings',                   settingsController.index);
-router.get('/settings/resume',            settingsController.resume);
+router.get('/settings',                       settingsController.index);
+router.get('/settings/resume',                settingsController.resume);
 
 // Autoload de comandos con :patientId
-router.param('patientId',                 patientController.load);
+router.param('patientId',                     patientController.load);
 
-router.get('/patients',                   patientController.index);
-router.get('/patients/:patientId(\\d+)',  patientController.show);
-router.get('/patients/new',               patientController.new);
-router.post('/patients/create',           patientController.create);
+router.get('/patients',                       patientController.index);
+router.get('/patients/:patientId(\\d+)',      patientController.show);
+router.get('/patients/new',                   patientController.new);
+router.post('/patients/create',               patientController.create);
+router.get('/patients/:patientId(\\d+)/edit', patientController.edit);
+router.put('/patients/:patientId(\\d+)',      patientController.update);
 
 module.exports = router;

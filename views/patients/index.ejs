@@ -1,7 +1,10 @@
 <h2>Listado de pacientes</h2>
 <table>
   <% var i; for(i=0; i < patients.length; i++) { %>
-    <tr><td><a href="patients/<%= patients[i].id %>"><%= patients[i].name %></a></td></tr>
+    <tr>
+      <td><a href="patients/<%= patients[i].id %>"><%= patients[i].name %></a></td>
+      <td><a href="patients/<%= patients[i].id %>/edit"><button>editar</button></a></td>
+    </tr>
   <% } %>
   <a href="/patients/new"><button type="button">Nuevo Paciente</buttton></a>
 </table>
