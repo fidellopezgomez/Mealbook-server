@@ -81,3 +81,14 @@ exports.update = function(req, res) {
       }
     });
 }
+
+//DELETE /patients/:patientId
+exports.destroy = function(req, res) {
+  req.patient
+    .destroy()
+    .then( function() {
+      res.redirect('/patients');
+    }).catch(function(error) {
+      next(error);
+    });
+}

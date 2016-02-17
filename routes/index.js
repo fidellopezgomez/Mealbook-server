@@ -22,5 +22,6 @@ router.get('/patients/new',                   patientController.new);
 router.post('/patients/create',               patientController.create);
 router.get('/patients/:patientId(\\d+)/edit', patientController.edit);
 router.put('/patients/:patientId(\\d+)',      patientController.update);
+router.delete('/patients/:patientId(\\d+)',   patientController.destroy);
 
 module.exports = router;
