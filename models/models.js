@@ -1,7 +1,10 @@
 var path = require('path');
 
+//EN LOCAL CREAR UN FICHERO .env con las siguientes constantes
+//DATABASE_URL=sqlite://:@:/
+//DATABASE_STORAGE=mealbookDB.sqlite
+
 // Postgres DATABASE_URL = postgres://user:password@host:port/DATABASE_URL
-// SQLite DATABASE_URL = sqlite://:@:/
 var URL = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 var DB_NAME =   (URL[6]||null);
 var USER =      (URL[2]||null);
@@ -37,7 +40,15 @@ var sequelize = new Sequelize(DB_NAME, USER, PWD, {
 var patient_path = path.join(__dirname,'patient');
 var Patient = sequelize.import(patient_path);
 
+// importar definición de la tabla Patient
+var weight_path = path.join(__dirname,'weight');
+var Weight = sequelize.import(weight_path);
+
+Weight.belongsTo(Patient);
+Patient.hasMany(Weight);
+
 exports.Patient = Patient;// exportar tabla Patient
+exports.Weight = Weight;// exportar tabla Weight
 
 //TODO cambiar success por *Promises*
 //sequelize.sync() crea e inicializa la tabla de Patients en DB
