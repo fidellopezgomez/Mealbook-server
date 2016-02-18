@@ -3,6 +3,7 @@ var router = express.Router();
 
 var settingsController = require('../controllers/settings_controller');
 var patientController = require('../controllers/patient_controller');
+var weightController = require('../controllers/weight_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,5 +24,8 @@ router.post('/patients/create',               patientController.create);
 router.get('/patients/:patientId(\\d+)/edit', patientController.edit);
 router.put('/patients/:patientId(\\d+)',      patientController.update);
 router.delete('/patients/:patientId(\\d+)',   patientController.destroy);
+
+router.post('/patients/:patientId(\\d+)/weight', weightController.create);
+router.delete('/patients/:patientId(\\d+)/weight/:weightId(\\d+)', weightController.destroy);
 
 module.exports = router;

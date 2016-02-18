@@ -37,7 +37,15 @@ var sequelize = new Sequelize(DB_NAME, USER, PWD, {
 var patient_path = path.join(__dirname,'patient');
 var Patient = sequelize.import(patient_path);
 
+// importar definición de la tabla Patient
+var weight_path = path.join(__dirname,'weight');
+var Weight = sequelize.import(weight_path);
+
+Weight.belongsTo(Patient);
+Patient.hasMany(Weight);
+
 exports.Patient = Patient;// exportar tabla Patient
+exports.Weight = Weight;// exportar tabla Weight
 
 //TODO cambiar success por *Promises*
 //sequelize.sync() crea e inicializa la tabla de Patients en DB

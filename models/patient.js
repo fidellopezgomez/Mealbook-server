@@ -1,5 +1,5 @@
-// Definición del modelo Paciente
 
+// Definición del modelo Paciente
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Patient',
     {
