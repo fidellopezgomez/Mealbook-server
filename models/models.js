@@ -2,36 +2,36 @@ var path = require('path');
 
 // Postgres DATABASE_URL = postgres://user:password@host:port/DATABASE_URL
 // SQLite DATABASE_URL = sqlite://:@:/
-var URL = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
-var DB_NAME =   (URL[6]||null);
-var USER =      (URL[2]||null);
-var PWD =       (URL[3]||null);
-var PROTOCOL =  (URL[1]||null);
-var DIALECT =   (URL[1]||null);
-var PORT =      (URL[5]||null);
-var HOST =      (URL[4]||null);
-var STORAGE = process.env.DATABASE_STORAGE;
+// var URL = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
+// var DB_NAME =   (URL[6]||null);
+// var USER =      (URL[2]||null);
+// var PWD =       (URL[3]||null);
+// var PROTOCOL =  (URL[1]||null);
+// var DIALECT =   (URL[1]||null);
+// var PORT =      (URL[5]||null);
+// var HOST =      (URL[4]||null);
+// var STORAGE = process.env.DATABASE_STORAGE;
 
 //cargar Model ORM
 var Sequelize = require('sequelize');
 
 //usar BBDD
-var sequelize = new Sequelize(DB_NAME, USER, PWD, {
-    dialect:  DIALECT,
-    protocol: PROTOCOL,
-    port:     PORT,
-    host:     HOST,
-    storage:  STORAGE,
-    omitNull: true //solo para Postgres
-  }
-);
-
-//usar BBDD SQLite:
-// var sequelize = new Sequelize(null, null, null, {
-//     dialect:  "sqlite",
-//     storage:  "mealbookDB.sqlite"
+// var sequelize = new Sequelize(DB_NAME, USER, PWD, {
+//     dialect:  DIALECT,
+//     protocol: PROTOCOL,
+//     port:     PORT,
+//     host:     HOST,
+//     storage:  STORAGE,
+//     omitNull: true //solo para Postgres
 //   }
 // );
+
+//usar BBDD SQLite:
+var sequelize = new Sequelize(null, null, null, {
+    dialect:  "sqlite",
+    storage:  "mealbookDB.sqlite"
+  }
+);
 
 // importar definición de la tabla Patient
 var patient_path = path.join(__dirname,'patient');

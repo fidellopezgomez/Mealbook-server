@@ -3,6 +3,11 @@
 <p>Email: <%= patient.email %></p>
 
 <h3>Añadir un peso</h3>
+<!--<% console.log(locals); %>-->
+<!--<% console.log("errors:"+errors); %>-->
+<!--<% console.log("error:"+errors[0]); %>-->
+<!--<% console.log("message Error:"+locals.messageErr); %>-->
+
 <% if(errors.length) { %>
   <ul id="errorMsgs">
     <% for(var i in errors) { %>
@@ -10,6 +15,11 @@
     <% } %>
   </ul>
 <% } %>
+
+<!-- % if(locals.messageErr) { %-->
+  <!--p><%= locals.messageErr %></p-->
+<!--% } % -->
+
 <form method="post" action="/patients/<%= patient.id %>/weight">
   <label for="wei" class="rem">Weight(*)</label>
   <input type="number" step="0.01" id="wei" name="weight[weightVal]" value="" placeholder="0.00"/></br></br>
