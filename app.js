@@ -1,12 +1,12 @@
 var express = require('express');
-var partials = require('express-partials');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-
+var partials = require('express-partials');
+var session = require('express-session');
 var routes = require('./routes/index');
 var routesJson = require('./routes/json');
 var app = express();
@@ -19,11 +19,24 @@ app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());//urlencoded({ extended: false })
-app.use(cookieParser());
-app.use(methodOverride('_method'));
+app.use(bodyParser.urlencoded({ extended: false }))//app.use(bodyParser.urlencoded());
+app.use(cookieParser('m3AlB0kS3rvEr2017'));
+app.use(session());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 app.use(partials());
+
+// Helpers dinámicos
+app.use(function(req,res,next){
+  //guardar path en session.redir para despues de login
+  if(!req.path.match(/\/login|\/logout/)) {
+    req.session.redir = req.path;
+  }
+
+  //Hacer visible req.session en las vistas
+  res.locals.session = req.session;
+  next();
+});
 
 app.use('/', routes);
 app.use('/json', routesJson);

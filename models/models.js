@@ -1,6 +1,6 @@
 var path = require('path');
 
-//EN LOCAL CREAR UN FICHERO .env con las siguientes constantes
+//EN LOCAL CREAR UN FICHERO .env en la raiz del proyecto con las siguientes constantes
 //DATABASE_URL=sqlite://:@:/
 //DATABASE_STORAGE=mealbookDB.sqlite
 

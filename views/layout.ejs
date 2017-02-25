@@ -10,6 +10,17 @@
     <div id="page-wrap">
       <header class="main" id="h1">
         <h1>Mealbook</h1>
+        <section class="main" id="sect_session">
+          <%if(!session.user){%>
+            <span class="right"><a href="/login">Login</a></span>
+          <%}else{%>
+            <span class="right"> <%=session.user.username%>
+              <form method="post" action="/logout?_method=delete">
+                <input type="submit" value="Logout">
+              </form>
+            </span>
+          <%}%>
+        </section>
       </header>
 
       <nav class="main" id="nav1" role="navigation">
