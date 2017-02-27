@@ -1,0 +1,16 @@
+{
+  "therapists": [
+    {
+      "dni":"12345678A",
+      "password":"qwerty",
+      "name": "Carolina",
+      "email": "carolina@email.com"
+    },
+    {
+      "dni":"X1234567B",
+      "password":"qwerty",
+      "name": "Juan",
+      "email": "juan@email.com"
+    }
+  ]
+}

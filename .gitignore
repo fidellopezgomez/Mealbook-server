@@ -4,3 +4,5 @@ node_modules
 npm-debug.log
 mealbookDB.sqlite
 .env
+local.js
+local.sqlite

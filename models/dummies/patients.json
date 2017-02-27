@@ -1,0 +1,23 @@
+{
+  "patients": [{
+    "name": "Pedro",
+    "email": "pedro@email.com",
+    "TherapistId": "1"
+  }, {
+    "name": "Marcos",
+    "email": "marcos@email.com",
+    "TherapistId": "1"
+  }, {
+    "name": "Sofía",
+    "email": "sofia@email.com",
+    "TherapistId": "2"
+  }, {
+    "name": "Lucia",
+    "email": "lucia@email.com",
+    "TherapistId": "2"
+  }, {
+    "name": "Susana",
+    "email": "susana@email.com",
+    "TherapistId": "2"
+  }]
+}
